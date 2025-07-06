@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "sipepu-api-collection",
+    "name": "SIPEPU API Collection",
+    "description": "API Collection untuk Sistem Pelaporan SIPEPU",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Laporan",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan?page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "status",
+              "value": "1",
+              "disabled": true
+            },
+            {
+              "key": "prioritas",
+              "value": "3",
+              "disabled": true
+            },
+            {
+              "key": "anonim",
+              "value": "0",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Laporan by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Laporan (Lengkap)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"nama\": \"Ahmad Budiman\",\n    \"email\": \"ahmad@example.com\",\n    \"no_hp\": \"081234567890\",\n    \"no_ktp\": \"1234567890123456\",\n    \"koordinat\": \"-6.200000,106.816666\",\n    \"tempat\": \"Jl. Sudirman No. 123, Jakarta Pusat\",\n    \"deskripsi_laporan\": \"Jalan berlubang besar di depan gedung perkantoran. Sudah 2 minggu tidak diperbaiki dan mengganggu lalu lintas.\",\n    \"prioritas\": null,\n    \"validasi\": null,\n    \"anonim\": 1\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/laporan",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Laporan (Anonim)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"koordinat\": \"-6.175110,106.865036\",\n    \"tempat\": \"Pasar Tanah Abang, Jakarta Pusat\",\n    \"deskripsi_laporan\": \"Lampu jalan mati sudah 5 hari. Area menjadi gelap dan tidak aman di malam hari.\",\n    \"prioritas\": null,\n    \"validasi\": null,\n    \"anonim\": 0\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/laporan",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Laporan",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"nama\": \"Ahmad Budiman (Updated)\",\n    \"email\": \"ahmad.updated@example.com\",\n    \"no_hp\": \"081234567890\",\n    \"no_ktp\": \"1234567890123456\",\n    \"koordinat\": \"-6.200000,106.816666\",\n    \"tempat\": \"Jl. Sudirman No. 123, Jakarta Pusat (Updated)\",\n    \"deskripsi_laporan\": \"Jalan berlubang besar di depan gedung perkantoran. Update: Lubang semakin besar setelah hujan.\",\n    \"prioritas\": 5,\n    \"validasi\": 4,\n    \"anonim\": 1,\n    \"status\": 2\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/laporan/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Status Laporan",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"status\": 3\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/laporan/1/status",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan", "1", "status"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan/statistics",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan", "statistics"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Laporan",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan?status=1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan"],
+          "query": [
+            {
+              "key": "status",
+              "value": "1",
+              "description": "1: Terkirim, 2: Dilihat, 3: Diproses, 4: Selesai"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by Prioritas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan?prioritas=5",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan"],
+          "query": [
+            {
+              "key": "prioritas",
+              "value": "5",
+              "description": "Prioritas 1-5 (5 = tertinggi)"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by Anonim",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/laporan?anonim=0",
+          "host": ["{{base_url}}"],
+          "path": ["api", "laporan"],
+          "query": [
+            {
+              "key": "anonim",
+              "value": "0",
+              "description": "0: Anonim, 1: Lengkap"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
